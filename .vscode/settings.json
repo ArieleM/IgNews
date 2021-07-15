@@ -1,5 +1,10 @@
 {
   "cSpell.words": [
     "faunadb"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#42261D",
+    "titleBar.activeBackground": "#5D3629",
+    "titleBar.activeForeground": "#FCF9F8"
+  }
 }
