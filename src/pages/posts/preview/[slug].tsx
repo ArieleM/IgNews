@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import { GetServerSideProps, GetStaticProps } from "next";
-import { getSession, useSession } from "next-auth/client";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { useSession } from "next-auth/client";
 import { getPrismicClient } from "../../../services/prismic";
 import { RichText } from "prismic-dom";
 
@@ -50,10 +50,12 @@ export default function PostPreview({ post }: PostPreviewProps) {
     </>
   );
 }
-export const getStaticPaths = () => {
+
+//Só existe em pages dinâmicas
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: "blocking",
+    fallback: "blocking", // true=lado client, false=retorna404, blocking=ssr
   };
 };
 
@@ -80,5 +82,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       post,
     },
+    revalidate: 60 * 30, //30 minutos
   };
 };
